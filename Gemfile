@@ -16,6 +16,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'hamlit-rails'
 gem 'rack-cors'
+gem 'simple_token_authentication', '~> 1.0'
+gem 'openfoodfacts'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
