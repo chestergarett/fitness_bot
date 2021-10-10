@@ -17,6 +17,8 @@ gem 'devise'
 gem 'hamlit-rails'
 gem 'rack-cors'
 gem 'simple_token_authentication', '~> 1.0'
+gem 'octokit', '~> 4.21'
+gem 'active_model_serializers'
 gem 'openfoodfacts'
 
 group :development, :test do
