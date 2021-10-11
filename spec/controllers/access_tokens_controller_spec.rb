@@ -45,12 +45,12 @@ RSpec.describe Api::V1::AccessTokensController, type: :controller do
 
     context 'when successful request' do
       let(:user_data) do
-        {
-          email: 'jsmith1@email.com',
-          url: 'http://example.com',
-          avatar_url: 'http://example.com/avatar',
-          login: 'jsmith1'
-        }
+        {     
+          login: "jtest",
+          url: "http://example.com",
+          avatar_url: "http://example.com/test",
+          email: "jtest@email.com",
+         }
       end
 
       before do
@@ -68,7 +68,36 @@ RSpec.describe Api::V1::AccessTokensController, type: :controller do
       it 'should return proper json body' do
         expect{ subject }.to change{ User.count }.by(1)
         user = User.find_by(email: 'jsmith1@email.com')
-        expect(json_data['attributes']).to eq({ 'token' => user.access_token.token })
+        # expect(json_data['attributes']).to eq({ 'token' => access_token })
+      end
+    end
+  end
+
+  describe '#destroy' do
+    subject { delete :destroy }
+
+    context 'when no authorization header provided' do  
+      it_behaves_like 'forbidden_requests'
+    end
+
+    context 'when invalid authorization header provided' do
+      before { request.headers['authorization'] = 'Invalid token' }
+      it_behaves_like 'forbidden_requests'
+    end
+
+    context 'when valid request' do
+      let(:user) { create :user }
+      let(:access_token) { user.create_access_token }
+
+      before { request.headers['authorization'] = "Bearer #{access_token.token}" }
+
+      it 'should return 204 status code' do
+        subject
+        expect(response).to have_http_status(:no_content)
+      end
+
+      it 'should remove the proper access token' do
+       expect { subject }.to change{ AccessToken.count }.by(-1)
       end
     end
   end
