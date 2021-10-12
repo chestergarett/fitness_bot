@@ -6,8 +6,8 @@ describe UserAuthenticator::Oauth do
 
     subject { authenticator.perform }
     context 'when code is incorrect' do
-      let(:error){  
-        double('Sawyer::Resource', error: 'bad_verification_code')
+      let(:error) {  
+        instance_double('Sawyer::Resource', error: 'bad_verification_code')
       }
 
       before do
@@ -36,7 +36,7 @@ describe UserAuthenticator::Oauth do
         allow_any_instance_of(Octokit::Client).to receive(:user).and_return(user_data)
       end
 
-      it 'should save the user when does not exists' do
+      it 'does save the user when does not exists' do
         expect{ subject }.to change{ User.count }.by(1)
       end
 

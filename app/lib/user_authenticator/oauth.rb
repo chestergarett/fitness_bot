@@ -1,10 +1,9 @@
 class UserAuthenticator::Oauth < UserAuthenticator
-  class AuthenticationError < StandardError; end
+  
 
   attr_reader :user, :access_token
 
   def initialize(code)
-    super(code)
     @code = code
   end
 
@@ -13,7 +12,6 @@ class UserAuthenticator::Oauth < UserAuthenticator
     raise AuthenticationError if token.try(:error).present?
 
     prepare_user
-
   end
 
   private
@@ -34,18 +32,16 @@ class UserAuthenticator::Oauth < UserAuthenticator
   end
 
   def prepare_user
-    if User.exists?(email: user_data[:email])
-      @user = User.find_by(email: user_data[:email])
-    else
-      @user = User.create(email: user_data[:email].nil? ? "#{user_data[:login]}@gmail.com" : user_data[:email],
-                avatar_url: user_data[:avatar_url],
-                url: user_data[:url],
-                username: user_data[:login],
-                provider: 'github',
-                password: 'password',
-                password_confirmation: 'password')
-    end
+    @user = User.exists?(email: user_data[:email]) ? User.find_by(email: user_data[:email]) : User.create(email: user_data[:email].nil? ? "#{user_data[:login]}@gmail.com" : user_data[:email],
+                                                                                                          avatar_url: user_data[:avatar_url],
+                                                                                                          url: user_data[:url],
+                                                                                                          username: user_data[:login],
+                                                                                                          provider: 'github',
+                                                                                                          password: 'password',
+                                                                                                          password_confirmation: 'password')
   end
 
   attr_reader :code
 end
+
+class AuthenticationError < StandardError; end

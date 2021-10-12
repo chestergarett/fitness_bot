@@ -6,7 +6,7 @@ RSpec.describe Api::V1::AccessTokensController, type: :controller do
       {
         data: {
           attributes: { email: 'jsmith@email.com', password: 'password' }
-         }
+              }
       }
     end
 
@@ -17,38 +17,42 @@ RSpec.describe Api::V1::AccessTokensController, type: :controller do
     end
 
     context 'when invalid email provided' do
-      let(:user) { create :user, email: 'invalid@email.com', password: 'password' }
-
       subject { post :create, params: params }
+
+      let(:user) { create :user, email: 'invalid@email.com', password: 'password' }
 
       before { user }
       it_behaves_like 'unauthorized_standard_requests'
     end
 
     context 'when invalid password provided' do
-      let(:user) { create :user, email: 'jsmith@email.com', password: 'invalid' }  
       subject { post :create, params: params }
+
+      let(:user) { create :user, email: 'jsmith@email.com', password: 'invalid' }
+      
       before { user }
       it_behaves_like 'unauthorized_standard_requests'
     end
 
     context 'when invalid code provided' do
-      let(:github_error){ 
-        double('Sawyer::Resource', error: 'bad_verification_code')
+      subject { post :create, params: { code: 'invalid_code' } }
+
+      let(:github_error) { 
+        instance_double('Sawyer::Resource', error: 'bad_verification_code')
       }
 
       before do
-        allow_any_instance_of(Octokit::Client).to receive(:exchange_code_for_token).and_return(github_error)
+        allow(Octokit::Client).to receive(:exchange_code_for_token).and_return(github_error)
       end
-      
-      subject { post :create, params: { code: 'invalid_code' } }
 
       it_behaves_like 'unauthorized_oauth_requests'
     end
 
     context 'when valid data provided' do
-      let(:user) { create :user, email: 'jsmith@email.com', password: 'password' }  
       subject { post :create, params: params }
+
+      let(:user) { create :user, email: 'jsmith@email.com', password: 'password' }  
+      
       before { user }
       
       it 'does return 201 status code' do

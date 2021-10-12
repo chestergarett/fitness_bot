@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       'title' => 'Authentication code is invalid',
       'detail' => 'You must provide valid code in order to exchange it for token.'
     }
-    render json: { 'errors': [error] }, status: 401
+    render json: { errors: [error] }, status: :unauthorized
   end
 
   def authentication_standard_error
@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
       'title' => 'Invalid login or password',
       'detail' => 'You must provide valid credentials in order to exchange them for token.'
     }
-    render json: { 'errors': [error] }, status: 401
+    render json: { errors: [error] }, status: :unauthorized
   end
 
   def authorization_error
@@ -50,6 +50,6 @@ class ApplicationController < ActionController::Base
       'title' => 'Not authorized.',
       'detail' => 'You have no right to access this resource.'
     }
-    render json: { 'errors': [error] }, status: 403
+    render json: { errors: [error] }, status: :forbidden
   end
 end
