@@ -4,8 +4,8 @@ class UserAuthenticator
   attr_reader :authenticator, :access_token
 
   def initialize(code: nil, email: nil, password: nil)
-    @authenticator = if code.present?
-      Oauth.new(code)
+    if code.present?
+      @authenticator = Oauth.new(code)
     else
       @authenticator = Standard.new(email, password)
     end
@@ -24,10 +24,10 @@ class UserAuthenticator
   private
 
   def set_access_token
-    @access_token = if user.access_token.present?
-      user.access_token
+    if user.access_token.present?
+      @access_token = user.access_token
     else
-      user.create_access_token
+      @access_token = user.create_access_token
     end
   end
 end

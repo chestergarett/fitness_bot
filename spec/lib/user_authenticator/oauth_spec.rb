@@ -7,13 +7,13 @@ describe UserAuthenticator::Oauth do
     subject { authenticator.perform }
     context 'when code is incorrect' do
       let(:error){  
-        double("Sawyer::Resource", error: "bad_verification_code")
+        double('Sawyer::Resource', error: 'bad_verification_code')
       }
 
       before do
         allow_any_instance_of(Octokit::Client).to receive(:exchange_code_for_token).and_return(error)
       end
-      it 'should raise an error' do
+      it 'does raise an error' do
         expect{ authenticator.perform }.to raise_error(
           UserAuthenticator::Oauth::AuthenticationError
         )
@@ -21,13 +21,13 @@ describe UserAuthenticator::Oauth do
       end
     end
 
-    context 'when code is correct' do
+    context 'does code is correct' do
       let(:user_data) do
         {     
-          login: "jtest",
-          url: "http://example.com",
-          avatar_url: "http://example.com/test",
-          email: "jtest@email.com",
+          login: 'jtest',
+          url: 'http://example.com',
+          avatar_url: 'http://example.com/test',
+          email: 'jtest@email.com',
          }
       end
 

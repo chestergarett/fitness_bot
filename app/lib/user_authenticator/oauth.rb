@@ -4,15 +4,16 @@ class UserAuthenticator::Oauth < UserAuthenticator
   attr_reader :user, :access_token
 
   def initialize(code)
+    super(code)
     @code = code
   end
 
   def perform
     raise AuthenticationError if code.blank?
     raise AuthenticationError if token.try(:error).present?
-    
+
     prepare_user
-    
+
   end
 
   private
@@ -29,21 +30,20 @@ class UserAuthenticator::Oauth < UserAuthenticator
   end
 
   def user_data
-    @user_data ||=  Octokit::Client.new(access_token: token).user.to_h.slice(:login, :avatar_url, :url, :email)
+    @user_data ||= Octokit::Client.new(access_token: token).user.to_h.slice(:login, :avatar_url, :url, :email)
   end
 
   def prepare_user
-    @user = if User.exists?(email: user_data[:email])
-      User.find_by(email: user_data[:email])
+    if User.exists?(email: user_data[:email])
+      @user = User.find_by(email: user_data[:email])
     else
-      User.create(email: user_data[:email].nil? ? "#{user_data[:login]}@gmail.com" : user_data[:email], 
-                avatar_url: user_data[:avatar_url], 
-                url: user_data[:url], 
+      @user = User.create(email: user_data[:email].nil? ? "#{user_data[:login]}@gmail.com" : user_data[:email],
+                avatar_url: user_data[:avatar_url],
+                url: user_data[:url],
                 username: user_data[:login],
-                provider: "github",
-                password: "password",
-                password_confirmation: "password"
-      )
+                provider: 'github',
+                password: 'password',
+                password_confirmation: 'password')
     end
   end
 

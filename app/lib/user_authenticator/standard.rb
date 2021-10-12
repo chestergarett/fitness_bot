@@ -4,13 +4,14 @@ class UserAuthenticator::Standard < UserAuthenticator
   attr_reader :user, :access_token
 
   def initialize(email, password)
+    super(email)
     @email = email
     @password = password
   end
 
   def perform
-    raise AuthenticationError if (email.blank? || password.blank?)
-    raise AuthenticationError unless  User.exists?(email: email)
+    raise AuthenticationError if email.blank? || password.blank?
+    raise AuthenticationError unless User.exists?(email: email)
 
     user = User.find_by(email: email)
 

@@ -6,7 +6,7 @@ module Api
       def create
         @user = User.where(email: params[:email]).first
 
-        if @user && @user.valid_password?(params[:password])
+        if @user&.valid_password?(params[:password])
           render :create, status: :created
         else
           render json: { error: 'invalid_credentials' }, status: :unauthorized
