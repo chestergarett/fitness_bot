@@ -1,5 +1,5 @@
 class UserAuthenticator::Oauth < UserAuthenticator
-  
+  class AuthenticationError < StandardError; end
 
   attr_reader :user, :access_token
 
@@ -43,5 +43,3 @@ class UserAuthenticator::Oauth < UserAuthenticator
 
   attr_reader :code
 end
-
-class AuthenticationError < StandardError; end
