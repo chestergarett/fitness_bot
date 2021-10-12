@@ -5,5 +5,5 @@ class User < ApplicationRecord
   has_one :access_token, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-         :recoverable, :rememberable, :validatable
+    :recoverable, :rememberable, :validatable
 end
