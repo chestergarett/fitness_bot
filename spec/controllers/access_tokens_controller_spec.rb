@@ -1,32 +1,32 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::AccessTokensController, type: :controller do
-  describe '#create' do
-    shared_examples_for "unauthorized_requests" do
-      let(:error) do
-        {
-          "status"=> "401",
-          "source"=>{ "pointer" => "/code" },
-          "title"=> "Authentication code is invalid",
-          "detail"=> "You must provide valid code in order to exchange it for token."
-        }
-      end
-
-
-      it 'should return 401 status code' do
-        subject
-        expect(response).to have_http_status(401)
-      end
-
-      it 'should return proper error body' do
-        subject
-        expect(json['errors']).to include(error)
-      end
+  describe 'POST #create' do
+    let(:params) do
+      { 
+        data: { 
+          attributes: { email: "jsmith@email.com", password: "password" }
+         }
+       }
     end
 
-    context 'when no code provided' do
+    context 'when no auth_data provided' do
       subject { post :create }
-      it_behaves_like "unauthorized_requests"
+      it_behaves_like "unauthorized_standard_requests"
+    end
+
+    context "when invalid email provided" do
+      let(:user) { create :user, email: "invalid@email.com", password: "password" }
+      subject { post :create, params: params }
+      before { user }
+      it_behaves_like "unauthorized_standard_requests"
+    end
+
+    context "when invalid password provided" do
+      let(:user) { create :user, email: "jsmith@email.com", password: "invalid" }  
+      subject { post :create, params: params }
+      before { user }
+      it_behaves_like "unauthorized_standard_requests"
     end
 
     context 'when invalid code provided' do
@@ -39,7 +39,24 @@ RSpec.describe Api::V1::AccessTokensController, type: :controller do
       end
       
       subject { post :create, params: { code: 'invalid_code' } }
-      it_behaves_like "unauthorized_requests"
+
+      it_behaves_like "unauthorized_oauth_requests"
+    end
+
+    context "when valid data provided" do
+      let(:user) { create :user, email: "jsmith@email.com", password: "password" }  
+      subject { post :create, params: params }
+      before { user }
+      
+      it 'should return 201 status code' do
+        subject
+        expect(response).to have_http_status(:created)
+      end
+
+      it 'should return proper json body' do
+        subject
+        expect(json_data['attributes']).to eq({ 'token' => access_token })
+      end
     end
     
 
@@ -68,7 +85,7 @@ RSpec.describe Api::V1::AccessTokensController, type: :controller do
       it 'should return proper json body' do
         expect{ subject }.to change{ User.count }.by(1)
         user = User.find_by(email: 'jsmith1@email.com')
-        # expect(json_data['attributes']).to eq({ 'token' => access_token })
+        expect(json_data['attributes']).to eq({ 'token' => access_token })
       end
     end
   end

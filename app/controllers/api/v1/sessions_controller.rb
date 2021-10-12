@@ -1,6 +1,8 @@
 module Api
   module V1
     class SessionsController < ApplicationController
+      skip_before_action :authorize!, only: :create
+      
       def create
         @user = User.where(email: params[:email]).first
 
