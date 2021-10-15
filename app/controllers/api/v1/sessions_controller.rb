@@ -1,7 +1,7 @@
 module Api
   module V1
     class SessionsController < ApplicationController
-      skip_before_action :authorize!, only: :create
+      skip_before_action :authenticate_user!, only: :create
 
       def create
         @user = User.where(email: params[:email]).first
@@ -14,7 +14,7 @@ module Api
       end
 
       def destroy
-        current_user && current_user.authentication_token = nil
+        current_user&.authentication_token = nil
         if current_user.save
           head(:ok)
         else
