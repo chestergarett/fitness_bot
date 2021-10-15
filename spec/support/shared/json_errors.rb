@@ -10,12 +10,12 @@ shared_examples_for 'unauthorized_oauth_requests' do
     }
   end
 
-  it 'should return 401 status code' do
+  it 'returns 401 status code' do
     subject
-    expect(response).to have_http_status(401)
+    expect(response).to have_http_status(:unauthorized)
   end
 
-  it 'should return proper error json' do
+  it 'returns proper error json' do
     subject
     expect(json['errors']).to include(authentication_error)
   end
@@ -31,12 +31,12 @@ shared_examples_for 'unauthorized_standard_requests' do
     }
   end
 
-  it 'should return 401 status code' do
+  it 'returns 401 status code' do
     subject
-    expect(response).to have_http_status(401)
+    expect(response).to have_http_status(:unauthorized)
   end
 
-  it 'should return proper error body' do
+  it 'returns proper error body' do
     subject
     expect(json['errors']).to include(authentication_error)
   end
