@@ -3,11 +3,7 @@ require 'rails_helper'
 RSpec.describe Api::V1::SessionsController, type: :controller do
   describe 'POST #create' do
     let(:params) do
-      {
-        data: {
-          attributes: { email: 'jsmith@email.com', password: 'password' }
-              }
-      }
+      { data: { attributes: { email: 'jsmith@email.com', password: 'password' } } }
     end
 
     context 'when valid email is provided' do
@@ -25,12 +21,12 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
     context 'when invalid data provided' do
       subject { post :create, params: params }
 
-      let(:user) { create :user, email: 'jsmith1@email.com', password: 'password' }  
+      let(:user) { create :user, email: 'jsmith1@email.com', password: 'password' }
       
       before { user }
       
       it 'does return 401 status code' do
-        subject
+        subject { post :create, params: params }
         expect(response).to have_http_status(:unauthorized)
       end
     end
