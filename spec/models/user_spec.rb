@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
 
-    it 'does validate presence of attributes' do  
+    it 'does validate presence of attributes' do
       user = build :user, email: nil, provider: nil
       expect(user).not_to be_valid
     end
