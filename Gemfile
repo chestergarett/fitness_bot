@@ -15,6 +15,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'hamlit-rails'
+gem 'rest-client', '~> 2.1'
 gem 'rack-cors'
 gem 'simple_token_authentication', '~> 1.0'
 gem 'octokit', '~> 4.21'
