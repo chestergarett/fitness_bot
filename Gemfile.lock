@@ -124,13 +124,11 @@ GEM
       hamlit (>= 1.2.0)
       railties (>= 4.0.1)
     hashdiff (1.0.1)
-<<<<<<< Updated upstream
+      http-accept (= 1.7.0)
     hashie (4.1.0)
-=======
     http-accept (1.7.0)
     http-cookie (1.0.4)
       domain_name (~> 0.5)
->>>>>>> Stashed changes
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
@@ -153,8 +151,8 @@ GEM
     mini_portile2 (2.5.3)
     minitest (5.14.4)
     msgpack (1.4.2)
-    netrc (0.11.0)
     multipart-post (2.1.1)
+    netrc (0.11.0)
     nio4r (2.5.7)
     nokogiri (1.11.3)
       mini_portile2 (~> 2.5.0)
