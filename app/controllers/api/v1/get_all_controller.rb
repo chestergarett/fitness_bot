@@ -12,6 +12,16 @@ module Api
         get_all = Rapid::Client.get_all
         render json: get_all
       end
+
+      def get_by_bodyPart
+        get_by_bodyPart = Rapid::Client.get_by_bodyPart(params[:bodyPart])
+        render json: get_by_bodyPart
+      end
+
+      def get_by_name
+        get_by_name = Rapid::Client.get_by_name(params[:name])
+        render json: get_by_name
+      end
     end
   end
 end

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do
       get '/get-all' => 'get_all#get_all'
       get '/get-by-id' => 'get_all#get_by_id'
+      get '/get-by-bodyPart' => 'get_all#get_by_bodyPart'
+      get '/get-by-name' => 'get_all#get_by_name'
       resources :sessions, only: [:create, :destroy]
       resources :users, only: [:create]
     end
