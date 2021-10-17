@@ -8,7 +8,7 @@ RSpec.describe Api::V1::WorkoutsController, type: :controller do
 
     context 'when valid name is provided' do
       subject(:attributes) { get :get_by_name, params: params }
-      
+
       it 'does return 200 status code' do
         expect(response).to have_http_status(:ok)
       end
@@ -22,7 +22,7 @@ RSpec.describe Api::V1::WorkoutsController, type: :controller do
 
     context 'when valid body_part is provided' do
       subject(:attributes) { get :get_by_body_part, params: params }
-      
+
       it 'does return 200 status code' do
         expect(response).to have_http_status(:ok)
       end

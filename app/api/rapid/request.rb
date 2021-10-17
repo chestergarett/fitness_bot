@@ -1,10 +1,9 @@
 module Rapid
   class Request
-      
     BASE_URL = Rails.application.credentials.WORKOUT_API_URL
     API_KEY = Rails.application.credentials.WORKOUT_API_KEY
     API_HOST = Rails.application.credentials.WORKOUT_API_HOST
-    
+ 
     def self.call(http_method, endpoint)
       result = RestClient::Request.execute(
         method: http_method,

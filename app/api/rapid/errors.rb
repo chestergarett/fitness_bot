@@ -12,5 +12,3 @@ module Rapid
     end
   end
 end
-
-    
