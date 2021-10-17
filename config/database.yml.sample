@@ -16,4 +16,4 @@ test:
 
 production:
   <<: *default
-  detabase: rails_project_production
+  database: rails_project_production
