@@ -3,19 +3,17 @@ class FoodOptionsController < ApplicationController
     @options = FoodOption.all
     option = FoodOption.first
 
-    unless option == nil
-      result = Edamam::Client.get_recipes(option.main_ingredient,
-      option.no_of_ingredients, option.diet_type,
-      option.health_label,option.cuisine_type,
-      option.meal_type, option.dish_type,
-      option.calories, option.excluded)
+    return if option.nil?
 
-      unless result[:code] == 'Success'
-        @recipes = result[:data]["hits"]
-      end
-  
-    end
+    result = Edamam::Client.get_recipes(option.main_ingredient,
+                                        option.no_of_ingredients, option.diet_type,
+                                        option.health_label, option.cuisine_type,
+                                        option.meal_type, option.dish_type,
+                                        option.calories, option.excluded)
 
+    return unless result[:code] != 'Success'
+
+    @recipes = result[:data]['hits']
   end
 
   def show
@@ -33,7 +31,6 @@ class FoodOptionsController < ApplicationController
       redirect_to food_options_path
     else
       # redirect_back fallback_location: root_path # baguhin pa later
-      puts food_options_params
       render :new
     end
   end
@@ -57,9 +54,9 @@ class FoodOptionsController < ApplicationController
     @options.destroy
     @options.save
 
-    if @options.save
-      render diet_plans_path
-    end
+    # if @options.save
+    #   render diet_plans_path
+    # end
   end
 
   private

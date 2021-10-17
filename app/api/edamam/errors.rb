@@ -3,11 +3,11 @@ module Edamam
     def self.map(code)
       case code
       when 401
-        return 'Unauthorized request. Please try again!'
+        'Unauthorized request. Please try again!'
       when 404
-        return 'Invalid Request!'
+        'Invalid Request!'
       else
-        return 'Service Unavailable. Please try again!'
+        'Service Unavailable. Please try again!'
       end
     end
   end

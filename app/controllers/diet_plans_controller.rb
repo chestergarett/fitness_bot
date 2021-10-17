@@ -41,9 +41,9 @@ class DietPlansController < ApplicationController
     @plan.destroy
     @plan.save
 
-    if @plan.save
-      render diet_plans_path
-    end
+    # if @plan.save
+    #   render diet_plans_path
+    # end
   end
 
   private
