@@ -1,0 +1,13 @@
+<% @plans.each do |plan|%>
+  <p> ID: <%= plan.id %> </p>
+  <p> Title: <%= plan.title %> </p>
+  <p> Description: <%= plan.description %> </p>
+  <p> End Date: <%= plan.end_date %> </p>
+
+  <%= link_to "View", diet_plan_path(plan.id), method: "get" %>
+  <%= link_to "Edit", edit_diet_plan_path(plan.id), method: "get" %>
+  <%= link_to "Delete", diet_plan_path(plan.id), method: "delete", data: { confirm: 'Are you sure?' } %>
+  <hr>
+<% end %>
+
+  <%= link_to "Create new plan", new_diet_plan_path, method: :get %>
