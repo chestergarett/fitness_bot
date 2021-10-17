@@ -8,12 +8,12 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
 
       #workouts
-      get '/workouts/get_by_all' => 'workouts#get_all'
-      get '/workouts/get_by_id' => 'workouts#get_by_id'
-      get '/workouts/get_by_body_part' => 'workouts#get_by_body_part'
-      get '/workouts/get_by_name' => 'workouts#get_by_name'
-      get '/workouts/get_by_target' => 'workouts#get_by_target'
-      get '/workouts/get_by_equipment' => 'workouts#get_by_equipment'
+      get '/workouts/get_all' => 'workouts#workout_all'
+      get '/workouts/get_by_id' => 'workouts#workout_by_id'
+      get '/workouts/get_by_body_part' => 'workouts#workout_by_body_part'
+      get '/workouts/get_by_name' => 'workouts#workout_by_name'
+      get '/workouts/get_by_target' => 'workouts#workout_by_target'
+      get '/workouts/get_by_equipment' => 'workouts#workout_by_equipment'
     end
   end
 end
