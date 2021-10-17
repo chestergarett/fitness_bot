@@ -3,12 +3,17 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1, defaults: { format: :json } do
-      get '/get-all' => 'get_all#get_all'
-      get '/get-by-id' => 'get_all#get_by_id'
-      get '/get-by-bodyPart' => 'get_all#get_by_bodyPart'
-      get '/get-by-name' => 'get_all#get_by_name'
+      #authentication
       resources :sessions, only: [:create, :destroy]
       resources :users, only: [:create]
+
+      #workouts
+      get '/workouts/get_by_all' => 'workouts#get_all'
+      get '/workouts/get_by_id' => 'workouts#get_by_id'
+      get '/workouts/get_by_body_part' => 'workouts#get_by_body_part'
+      get '/workouts/get_by_name' => 'workouts#get_by_name'
+      get '/workouts/get_by_target' => 'workouts#get_by_target'
+      get '/workouts/get_by_equipment' => 'workouts#get_by_equipment'
     end
   end
 end
