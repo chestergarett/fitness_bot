@@ -1,14 +1,15 @@
 module Rapid
   class Request
       
-    TOKEN = 'bbaa43c885mshcf11c8706286c2dp115799jsn95b9326f85e6'
-    BASE_URL = 'https://exercisedb.p.rapidapi.com'
+    BASE_URL = Rails.application.credentials.WORKOUT_API_URL
+    API_KEY = Rails.application.credentials.WORKOUT_API_KEY
+    API_HOST = Rails.application.credentials.WORKOUT_API_HOST
     
     def self.call(http_method, endpoint)
       result = RestClient::Request.execute(
         method: http_method,
         url: "#{BASE_URL}/#{endpoint}",
-        headers: { 'Content-Type' => 'application/json', 'X-RapidAPI-Host' => 'exercisedb.p.rapidapi.com', 'X-RapidAPI-Key' => 'bbaa43c885mshcf11c8706286c2dp115799jsn95b9326f85e6' }
+        headers: { 'Content-Type' => 'application/json', 'X-RapidAPI-Host' => API_HOST, 'X-RapidAPI-Key' => API_KEY }
       )
       JSON.parse(result.body)
       { code: result.code, status: 'Success', data: JSON.parse(result.body) }
