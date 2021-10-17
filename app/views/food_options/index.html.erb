@@ -1,0 +1,51 @@
+<div>
+  <% if @recipes == nil %>
+    Oops! there's no recipes for you
+  <% else %>
+    <% @recipes.each do |recipe| %>
+      <p> Food ID: <%= recipe["recipe"]["foodID"] %> </p>
+      <p> Label: <%= recipe["recipe"]["label"] %> </p>
+      <img src="<%= recipe["recipe"]["image"] %>" >
+      <p> Link: <a href="<%= recipe["recipe"]["shareAs"]%>" target="_blank"> Go to website</a> </p>
+      <ul> Health Labels: 
+        <% recipe["recipe"]["healthLabels"].each do |label| %>
+          <li> <%= label %> </li>
+        <% end %>
+      </ul>
+
+      <ul> Cautions: 
+        <% recipe["recipe"]["cautions"].each do |label| %>
+          <li> <%= label %> </li>
+        <% end %>
+      </ul>
+
+      <ul> Ingredients: 
+        <% recipe["recipe"]["ingredientLines"].each do |label| %>
+          <li> <%= label %> </li>
+        <% end %>
+      </ul>
+
+
+
+      <hr>
+    <% end %>
+  <% end %>
+
+  <% @options.each do |option| %>
+    <p> ID: <%= option.id %> </p>
+    <p> Meal Type: <%= option.meal_type %> </p>
+    <p> No. of Ingredients: <%= option.no_of_ingredients %> </p>
+    <p> Dish Type: <%= option.dish_type %> </p>
+    <p> Cuisine Type: <%= option.cuisine_type %> </p>
+    <p> Diet Type: <%= option.diet_type %> </p>
+    <p> Main Ingredient: <%= option.main_ingredient %> </p>
+    <p> Health Label: <%= option.health_label %> </p>
+    <p> Calories: <%= option.calories %> </p>
+    <p> Excluded: <%= option.excluded %> </p>
+
+  <% end %>
+</div>
+
+<%= link_to "Create new Food Option", new_food_option_path, method: :get %>
+
+<p> <%= @get_recipes %> </p>
