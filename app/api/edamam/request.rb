@@ -1,8 +1,8 @@
 module Edamam
   class Request
-    APPLICATION_ID = 'cde8be74'.freeze
-    APPLICATION_KEY = '6746fb83b091d7a1339f2b70f85ef6fb'.freeze
-    BASE_URL = 'https://api.edamam.com/api/recipes/v2'.freeze
+    APPLICATION_ID = Rails.application.credentials.edamam[:application_id]
+    APPLICATION_KEY = Rails.application.credentials.edamam[:application_key]
+    BASE_URL = Rails.application.credentials.edamam[:base_url]
     def self.call(http_method, params)
       result = RestClient::Request.execute(
         method: http_method,
