@@ -21,7 +21,6 @@ gem 'simple_token_authentication', '~> 1.0'
 gem 'octokit', '~> 4.21'
 gem 'active_model_serializers'
 gem 'openfoodfacts'
-gem 'jwt', '~> 1.5', '>= 1.5.4'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
