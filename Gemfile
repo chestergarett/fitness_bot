@@ -22,6 +22,8 @@ gem 'octokit', '~> 4.21'
 gem 'active_model_serializers'
 gem 'openfoodfacts'
 
+gem 'rest-client', '~> 2.0.1'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
