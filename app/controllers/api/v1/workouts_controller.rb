@@ -1,8 +1,6 @@
 module Api
   module V1
     class WorkoutsController < ApplicationController
-      skip_before_action :authenticate_user!
-
       def workout_all
         get_all = Rapid::Client.workout_all
         render json: get_all
