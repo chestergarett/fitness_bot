@@ -30,6 +30,9 @@ Metrics/BlockLength:
     - "config/**/*"
     - "spec/**/*"
 
+Metrics/ParameterLists:
+  Enabled: false
+
 Metrics/MethodLength:
   Enabled: false
 
