@@ -1,7 +1,7 @@
 module Edamam
   class Client
-    def self.get_recipes(main_ingredient, no_of_ingredients, diet_type, health_label, cuisine_type, meal_type, dish_type, calories, excluded)
-      Request.call('get', "&q=#{main_ingredient}&ingr=#{no_of_ingredients}&diet=#{diet_type}&health=#{health_label}&cuisineType=#{cuisine_type}&mealType=#{meal_type}&dishType=#{dish_type}&calories=#{calories}&excluded=#{excluded}")
+    def self.get_recipes(params)
+      Request.call('get', "&q=#{params[:main_ingredient]}&ingr=#{params[:no_of_ingredients]}&diet=#{params[:diet_type]}&health=#{params[:health_label]}&cuisineType=#{params[:cuisine_type]}&mealType=#{params[:meal_type]}&dishType=#{params[:dish_type]}&calories=#{params[:calories]}&excluded=#{params[:excluded]}")
     end
   end
 end

@@ -7,11 +7,11 @@ module Api
 
         return if option.nil?
 
-        result = Edamam::Client.get_recipes(option.main_ingredient,
-                                            option.no_of_ingredients, option.diet_type,
-                                            option.health_label, option.cuisine_type,
-                                            option.meal_type, option.dish_type,
-                                            option.calories, option.excluded)
+        params = ActionController::Parameters.new({ main_ingredient:  option.main_ingredient, no_of_ingredients: option.no_of_ingredients,
+                                                    diet_type: option.diet_type, health_label: option.health_label, cuisine_type: option.cuisine_type,
+                                                    meal_type: option.meal_type, dish_type: option.dish_type, calories: option.calories, excluded: option.excluded })
+
+        result = Edamam::Client.get_recipes(params)
 
         # return unless result[:code] != 200
 
