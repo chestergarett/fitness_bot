@@ -1,9 +1,8 @@
 class ApplicationController < ActionController::Base
   class AuthorizationError < StandardError; end
-  rescue_from AuthorizationError, with: :authorization_error
-
   protect_from_forgery with: :null_session
-  before_action :authenticate_user!
+  rescue_from AuthorizationError, with: :authorization_error
+  acts_as_token_authentication_handler_for User
 
   private
 

@@ -15,8 +15,13 @@ Rails.application.routes.draw do
       get '/workouts/get_by_name' => 'workouts#workout_by_name'
       get '/workouts/get_by_target' => 'workouts#workout_by_target'
       get '/workouts/get_by_equipment' => 'workouts#workout_by_equipment'
+
+      #diet plans
       resources :food_options, only: [:index]
       resources :diet_plans, only: [:index]
+
+      #client_profile
+      resources :client_profiles, only: [:create]
     end
   end
 end
