@@ -23,6 +23,30 @@ ActiveRecord::Schema.define(version: 2021_10_17_092921) do
     t.index ["user_id"], name: "index_access_tokens_on_user_id"
   end
 
+  create_table "diet_plans", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "food_options", force: :cascade do |t|
+    t.integer "food_id"
+    t.integer "diet_plan_id"
+    t.string "meal_type"
+    t.string "dish_type"
+    t.string "diet_type"
+    t.string "cuisine_type"
+    t.string "main_ingredient"
+    t.integer "no_of_ingredients"
+    t.string "health_label"
+    t.integer "calories"
+    t.string "excluded"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+  
   create_table "client_profiles", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
