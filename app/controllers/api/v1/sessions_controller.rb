@@ -1,7 +1,7 @@
 module Api
   module V1
     class SessionsController < ApplicationController
-      skip_before_action :authenticate_user!, only: :create
+      skip_before_action :authenticate_user_from_token!, only: :create
 
       def create
         @user = User.where(email: params[:email]).first
