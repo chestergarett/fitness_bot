@@ -22,6 +22,9 @@ Rails.application.routes.draw do
 
       #client_profile
       resources :client_profiles, only: [:create]
+
+      #workout_plans
+      resources :workout_plans
     end
   end
 end

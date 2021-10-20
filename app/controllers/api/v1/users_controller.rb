@@ -9,7 +9,7 @@ module Api
         if @user.save
           render :create
         else
-          head(:unprocessable_entity)
+          render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
         end
       end
 
