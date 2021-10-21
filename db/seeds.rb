@@ -14,3 +14,4 @@ diet_plan = DietPlan.create(title: 'test diet', description: 'test description',
 food_option = FoodOption.create(main_ingredient: 'test ingredient')
 food_option.diet_plan = diet_plan
 food_option.save
+food = Food.create(name: 'food_name', ingredients: 'test_ingredients', media: 'test_medis')

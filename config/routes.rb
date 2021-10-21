@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       #diet plans
       resources :food_options, only: [:index]
       resources :diet_plans
+      resources :food, only: [:index, :create]
 
       #client_profile
       resources :client_profiles, only: [:create]
