@@ -1,7 +1,8 @@
 module Api
   module V1
     class FoodController < ApplicationController
-      skip_before_action :authenticate_user_from_token!, only: [:index, :create]
+      skip_before_action :authenticate_user_from_token!, only: :index
+      skip_before_action :authenticate_user_from_token!, only: :create
       def index
         food = Food.all
         # food = Food.where(:food_option_id == current_user.food_option_id)
