@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       resources :client_profiles, only: [:create]
 
       #workout_plans
+      get '/workout_plans/user_workouts' => 'workout_plans#user_workouts'
       resources :workout_plans
     end
   end
