@@ -17,9 +17,9 @@ module Api
       end
 
       def create
-        plan = DietPlan.new(diet_params)
+        @plan = DietPlan.new(diet_params)
 
-        if plan.save
+        if @plan.save
           render :create
         else
           # redirect_back fallback_location: root_path # baguhin pa later
