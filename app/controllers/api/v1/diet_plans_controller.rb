@@ -1,7 +1,6 @@
 module Api
   module V1
     class DietPlansController < ApplicationController
-      skip_before_action :authenticate_user!, only: :index
       def index
         plans = DietPlan.all
         render json: plans
