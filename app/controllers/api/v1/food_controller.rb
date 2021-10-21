@@ -3,7 +3,7 @@ module Api
     class FoodController < ApplicationController
       skip_before_action :authenticate_user_from_token!, only: [:index, :create]
       def index
-        food = Food.all 
+        food = Food.all
         # food = Food.where(:food_option_id == current_user.food_option_id)
         render json: food
       end
@@ -23,7 +23,6 @@ module Api
       def food_params
         params.require(:food).permit(:name, :ingredients, :media)
       end
-
     end
   end
 end
