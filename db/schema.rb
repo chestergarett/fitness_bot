@@ -64,8 +64,6 @@ ActiveRecord::Schema.define(version: 2021_10_20_173954) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-<<<<<<< HEAD
-=======
 
   create_table "foods", force: :cascade do |t|
     t.string "name"
@@ -74,7 +72,6 @@ ActiveRecord::Schema.define(version: 2021_10_20_173954) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
->>>>>>> 839c7d5 (seed commit)
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
