@@ -18,10 +18,14 @@ Rails.application.routes.draw do
 
       #diet plans
       resources :food_options, only: [:index]
-      resources :diet_plans, only: [:index]
+      resources :diet_plans
 
       #client_profile
       resources :client_profiles, only: [:create]
+
+      #workout_plans
+      get '/workout_plans/user_workouts' => 'workout_plans#user_workouts'
+      resources :workout_plans
     end
   end
 end

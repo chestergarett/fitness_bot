@@ -9,7 +9,7 @@ module Api
         if @user&.valid_password?(params[:password])
           render :create, status: :created
         else
-          render json: { error: 'invalid_credentials' }, status: :unauthorized
+          render json: { error: 'Invalid Credentials.' }, status: :unauthorized
         end
       end
 

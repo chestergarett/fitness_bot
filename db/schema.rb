@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_092921) do
+ActiveRecord::Schema.define(version: 2021_10_20_173954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,24 @@ ActiveRecord::Schema.define(version: 2021_10_17_092921) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_access_tokens_on_user_id"
+  end
+
+  create_table "client_profiles", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.float "height"
+    t.float "current_weight"
+    t.float "goal_weight"
+    t.string "sex"
+    t.integer "age"
+    t.string "workout_frequency"
+    t.string "body_type"
+    t.datetime "target_date"
+    t.string "food_preference"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_client_profiles_on_user_id"
   end
 
   create_table "diet_plans", force: :cascade do |t|
@@ -45,24 +63,6 @@ ActiveRecord::Schema.define(version: 2021_10_17_092921) do
     t.string "excluded"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-  
-  create_table "client_profiles", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.float "height"
-    t.float "current_weight"
-    t.float "goal_weight"
-    t.string "sex"
-    t.integer "age"
-    t.string "workout_frequency"
-    t.string "body_type"
-    t.datetime "target_date"
-    t.string "food_preference"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_client_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -89,6 +89,25 @@ ActiveRecord::Schema.define(version: 2021_10_17_092921) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "workout_plans", force: :cascade do |t|
+    t.string "bodyPart"
+    t.string "equipment"
+    t.string "gifUrl"
+    t.integer "workout_id"
+    t.string "name"
+    t.string "target"
+    t.string "status"
+    t.datetime "startDate"
+    t.datetime "endDate"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "reps"
+    t.string "sets"
+    t.index ["user_id"], name: "index_workout_plans_on_user_id"
+  end
+
   add_foreign_key "access_tokens", "users"
   add_foreign_key "client_profiles", "users"
+  add_foreign_key "workout_plans", "users"
 end
