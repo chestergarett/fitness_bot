@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       #authentication
       resources :sessions, only: [:create, :destroy]
       resources :users, only: [:create]
+      resources :user_workouts
 
       #workouts
       get '/workouts/get_all' => 'workouts#workout_all'
