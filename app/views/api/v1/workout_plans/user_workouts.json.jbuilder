@@ -4,5 +4,9 @@ json.data do
     json.title workout.name
     json.start workout.startDate
     json.end workout.endDate.present? ? workout.endDate : workout.startDate
+    json.target workout.target
+    json.equipment workout.equipment
+    json.reps workout.reps
+    json.gifUrl workout.gifUrl
   end
 end
