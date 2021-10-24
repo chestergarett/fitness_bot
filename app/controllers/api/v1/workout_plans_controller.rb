@@ -5,7 +5,7 @@ module Api
         @workout_plan = WorkoutPlan.new(workout_plan_params)
         @workout_plan.user = current_user
         @workout_plan.status = 'NOT STARTED'
-        
+
         if @workout_plan.save
           render :create, status: :created
         else

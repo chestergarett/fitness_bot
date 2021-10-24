@@ -2,7 +2,7 @@ module Api
   module V1
     class FoodOptionsController < ApplicationController
       def index
-        option = FoodOption.first #FoodOption.where(:diet_plan_id == current_user.diet_plan_id)
+        option = FoodOption.where(current_user.diet_plan_id == params[:diet_plan_id])
 
         return if option.nil?
 
