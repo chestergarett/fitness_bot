@@ -2,7 +2,7 @@ module Api
   module V1
     class FoodOptionsController < ApplicationController
       def index
-        option = FoodOption.first # FoodOption.where(:diet_plan_id == current_user.diet_plan_id)
+        option = FoodOption.first #FoodOption.where(:diet_plan_id == current_user.diet_plan_id)
 
         return if option.nil?
 
@@ -60,7 +60,7 @@ module Api
       private
 
       def food_options_params
-        params.require(:food_option).permit(:meal_type, :dish_type, :diet_type, :cuisine_type, :main_ingredient, :no_of_ingredients, :health_label, :calories, :excluded)
+        params.require(:food_option).permit(:meal_type, :dish_type, :diet_type, :cuisine_type, :main_ingredient, :no_of_ingredients, :health_label, :calories, :excluded, :diet_plan_id)
       end
     end
   end

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       get '/workouts/get_by_equipment' => 'workouts#workout_by_equipment'
 
       #diet plans
-      resources :food_options, only: [:index]
+      resources :food_options
       resources :diet_plans
       resources :food, only: [:index, :create]
 

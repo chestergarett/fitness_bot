@@ -8,5 +8,6 @@ json.data do
     json.equipment workout.equipment
     json.reps workout.reps
     json.gifUrl workout.gifUrl
+    json.status workout.status
   end
 end
