@@ -18,7 +18,7 @@ module Api
         if @plan.save
           render :create
         else
-          render json: { errors: @plan.errors.full_messages }, status: :unprocessable_entity 
+          render json: { errors: @plan.errors.full_messages }, status: :unprocessable_entity
         end
       end
 
@@ -28,7 +28,7 @@ module Api
         if @plan.update(diet_params)
           render :update
         else
-          render json: { errors: @plan.errors.full_messages }, status: :unprocessable_entity 
+          render json: { errors: @plan.errors.full_messages }, status: :unprocessable_entity
         end
       end
 
