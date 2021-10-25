@@ -1,7 +1,6 @@
 module Api
   module V1
     class FoodOptionsController < ApplicationController
-      skip_before_action :authenticate_user!, only: :index
       def index
         option = FoodOption.first # FoodOption.where(:diet_plan_id == current_user.diet_plan_id)
 

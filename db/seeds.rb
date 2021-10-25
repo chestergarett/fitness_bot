@@ -6,4 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+##test users
 user = User.create(username: 'test_username', email: 'test@email.com', password: 'password')
+
+#test diet plans
+diet_plan = DietPlan.create(title: 'test diet', description: 'test description', end_date: '2021-10-14')
+food_option = FoodOption.create(main_ingredient: 'test ingredient')
+food_option.diet_plan = diet_plan
+food_option.save
+food = Food.create(name: 'food_name', ingredients: 'test_ingredients', media: 'test_medis')

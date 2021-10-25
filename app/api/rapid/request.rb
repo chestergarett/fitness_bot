@@ -7,7 +7,7 @@ module Rapid
     def self.call(http_method, endpoint)
       result = RestClient::Request.execute(
         method: http_method,
-        url: "#{BASE_URL}/#{endpoint}",
+        url: "#{BASE_URL}#{endpoint}",
         headers: { 'Content-Type' => 'application/json', 'X-RapidAPI-Host' => API_HOST, 'X-RapidAPI-Key' => API_KEY }
       )
       JSON.parse(result.body)
