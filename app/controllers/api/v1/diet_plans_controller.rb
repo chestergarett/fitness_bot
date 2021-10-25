@@ -2,20 +2,14 @@ module Api
   module V1
     class DietPlansController < ApplicationController
       def index
-        plans = DietPlan.all
-        render json: plans
+        plans = DietPlan.where(user: current_user)
+        render json: { data: plans }, status: :ok
       end
 
       def show
-        plan = DietPlan.find(params[:id])
-        render json: { data: plan.food_option }, status: :ok
+        @plan = DietPlan.find(params[:id])
+        render :show, status: :ok
       end
-
-      def new
-        @plan = DietPlan.new
-        render json: plan
-      end
-
 
       def create
         @plan = DietPlan.new(diet_params)
@@ -24,21 +18,17 @@ module Api
         if @plan.save
           render :create
         else
-          render :new
+          render json: { errors: @plan.errors.full_messages }, status: :unprocessable_entity 
         end
-      end
-
-      def edit
-        @plan = DietPlan.find(params[:id])
       end
 
       def update
         @plan = DietPlan.find(params[:id])
 
-        if @plan.update
-          redirect_to root_path
+        if @plan.update(diet_params)
+          render :update
         else
-          redirect_back fallback_location: root_path # baguhin pa later
+          render json: { errors: @plan.errors.full_messages }, status: :unprocessable_entity 
         end
       end
 
@@ -47,9 +37,7 @@ module Api
         @plan.destroy
         @plan.save
 
-        # if @plan.save
-        #   render diet_plans_path
-        # end
+        render json: { data: 'Successfully deleted diet plan.' }, status: :no_content
       end
 
       private
