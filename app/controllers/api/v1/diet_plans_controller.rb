@@ -8,7 +8,7 @@ module Api
 
       def show
         plan = DietPlan.find(params[:id])
-        render json: plan
+        render json: { data: plan.food_option }, status: :ok
       end
 
       def new
@@ -16,13 +16,14 @@ module Api
         render json: plan
       end
 
+
       def create
         @plan = DietPlan.new(diet_params)
+        @plan.user = current_user
 
         if @plan.save
           render :create
         else
-          # redirect_back fallback_location: root_path # baguhin pa later
           render :new
         end
       end

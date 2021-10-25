@@ -2,8 +2,12 @@ module Api
   module V1
     class FoodOptionsController < ApplicationController
       def index
-        option = FoodOption.where(current_user.diet_plan_id == params[:diet_plan_id])
+        @options = FoodOption.where(user: current_user.diet_plans)
+        render json: { data: @options }
+      end
 
+      def show
+        option = FoodOption.find(params[:id])
         return if option.nil?
 
         params = ActionController::Parameters.new({ main_ingredient:  option.main_ingredient, no_of_ingredients: option.no_of_ingredients,
@@ -18,10 +22,6 @@ module Api
         render json: get_recipes
       end
 
-      def show
-        @option = FoodOption.find(params[:id])
-      end
-
       def create
         @option = FoodOption.new(food_options_params)
 
@@ -29,7 +29,7 @@ module Api
           render :create
         else
           # redirect_back fallback_location: root_path # baguhin pa later
-          render :new
+          render json: { error: @option.errors.full_messages }, status: :unprocessable_entity
         end
       end
 

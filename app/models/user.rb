@@ -2,6 +2,7 @@ class User < ApplicationRecord
   acts_as_token_authenticatable
   has_one :client_profile, dependent: :destroy
   has_many :workout_plans, dependent: :destroy
+  has_many :diet_plans, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
   has_one :access_token, dependent: :destroy
