@@ -1,5 +1,6 @@
 json.data do
   json.food_option do
+    json.food_option_id @option.id
     json.diet_plan_id @option.diet_plan_id
     json.meal_type @option.meal_type
     json.dish_type @option.dish_type

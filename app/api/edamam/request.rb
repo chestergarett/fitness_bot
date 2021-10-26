@@ -3,6 +3,7 @@ module Edamam
     APPLICATION_ID = Rails.application.credentials.edamam[:application_id]
     APPLICATION_KEY = Rails.application.credentials.edamam[:application_key]
     BASE_URL = Rails.application.credentials.edamam[:base_url]
+
     def self.call(http_method, params)
       result = RestClient::Request.execute(
         method: http_method,
