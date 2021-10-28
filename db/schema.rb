@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_25_161240) do
+ActiveRecord::Schema.define(version: 2021_10_28_153331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,11 @@ ActiveRecord::Schema.define(version: 2021_10_25_161240) do
     t.float "calories"
     t.float "totalWeight"
     t.bigint "diet_plan_id", null: false
+    t.string "dishType"
+    t.string "mealType"
+    t.datetime "startDate"
+    t.datetime "endDate"
+    t.string "status"
     t.index ["diet_plan_id"], name: "index_foods_on_diet_plan_id"
   end
 
