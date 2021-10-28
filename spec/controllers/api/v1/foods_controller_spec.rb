@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::FoodController, type: :controller do
+RSpec.describe Api::V1::FoodsController, type: :controller do
   describe 'POST #create' do
     let(:params) do
       { data: { food: { name: 'test', ingredients: 'test2', media: 'test3' } } }
