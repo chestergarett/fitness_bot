@@ -10,8 +10,7 @@
 user = User.create(username: 'test_username', email: 'test@email.com', password: 'password')
 
 #test diet plans
-diet_plan = DietPlan.create(title: 'test diet', description: 'test description', end_date: '2021-10-14')
-food_option = FoodOption.create(main_ingredient: 'test ingredient')
+diet_plan = DietPlan.create(title: 'test diet', description: 'test description', end_date: Time.now)
+food_option = FoodOption.create(diet_plan_id: 1, meal_type: 'dinner', dish_type: 'Main course', diet_type: 'balanced', health_label: 'celery-free', cuisine_type: 'American', main_ingredient: 'Chicken', no_of_ingredients: 8, calories: 400, excluded: 'Oyster')
 food_option.diet_plan = diet_plan
 food_option.save
-food = Food.create(name: 'food_name', ingredients: 'test_ingredients', media: 'test_medis')

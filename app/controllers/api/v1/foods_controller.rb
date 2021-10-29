@@ -1,6 +1,12 @@
 module Api
   module V1
     class FoodsController < ApplicationController
+      def index
+        @foods = Food.where(diet_plan: params[:diet_plan_id])
+
+        render :index, status: :ok
+      end
+
       def show
         @food = Food.find(params[:id])
         render json: { data: @food }, status: :ok
@@ -35,7 +41,7 @@ module Api
       private
 
       def food_params
-        params.require(:food).permit(:name, :ingredients, :media, :calories, :totalWeight, :ingredientLines, :diet_plan_id)
+        params.require(:food).permit(:name, :ingredients, :media, :calories, :totalWeight, :ingredientLines, :diet_plan_id, :dishType, :mealType, :startDate, :endDate, :status)
       end
     end
   end
