@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_28_153331) do
+ActiveRecord::Schema.define(version: 2021_10_29_134321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2021_10_28_153331) do
     t.datetime "startDate"
     t.datetime "endDate"
     t.string "status"
+    t.string "food_type"
     t.index ["diet_plan_id"], name: "index_foods_on_diet_plan_id"
   end
 
