@@ -43,7 +43,7 @@ module Api
       private
 
       def diet_params
-        params.require(:diet_plan).permit(:title, :description, :end_date)
+        params.require(:diet_plan).permit(:title, :description, :end_date, :notes)
       end
     end
   end

@@ -27,6 +27,10 @@ module Api
             n -= 1
           end
 
+          @diet_plan = DietPlan.new(title: 'The Ultimate Diet', description: 'recommended for you!', end_date: Time.now.in_time_zone, notes: 'Start taking steps in your fitness journey.')
+          @diet_plan.user = current_user
+          @diet_plan.save
+
           render :create
         else
           head(:unprocessable_entity)
