@@ -37,6 +37,16 @@ module Api
         end
       end
 
+      def update
+        @client_profile = ClientProfile.find(params[:id])
+
+        if @client_profile.update(client_profile_params)
+          render :update, status: :ok
+        else
+          render json: { errors: @client_profile.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def client_profile_params

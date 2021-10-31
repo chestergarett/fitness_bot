@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       resources :foods
 
       #client_profile
-      resources :client_profiles, only: [:create]
+      resources :client_profiles, only: [:create, :update]
 
       #workout_plans
       get '/workout_plans/user_workouts' => 'workout_plans#user_workouts'
