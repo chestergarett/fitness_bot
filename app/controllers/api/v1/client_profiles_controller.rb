@@ -47,8 +47,8 @@ module Api
         end
       end
 
-      def show
-        @client_profile = ClientProfile.find(params[:id])
+      def index
+        @client_profile = ClientProfile.where(user: current_user)
 
         render json: { data: @client_profile }, status: :ok
       end
