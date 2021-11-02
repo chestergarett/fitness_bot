@@ -27,6 +27,9 @@ Rails.application.routes.draw do
       #workout_plans
       get '/workout_plans/user_workouts' => 'workout_plans#user_workouts'
       resources :workout_plans
+
+      #dashboards
+      resources :dashboards
     end
   end
 end
