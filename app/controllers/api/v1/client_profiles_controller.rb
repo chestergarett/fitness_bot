@@ -23,8 +23,8 @@ module Api
                                               endDate: @client_profile.created_at + n.day,
                                               reps: 12,
                                               sets: 3)
-            @workout_plan.user = current_user
-            @workout_plan.save
+              @workout_plan.user = current_user
+              @workout_plan.save
 
             elsif @client_profile.current_weight > 50 && @client_profile.body_type == 'Normal weight'
               @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
@@ -39,11 +39,11 @@ module Api
                                               endDate: @client_profile.created_at + n.day,
                                               reps: 15,
                                               sets: 4)
-            @workout_plan.user = current_user
-            @workout_plan.save
+              @workout_plan.user = current_user
+              @workout_plan.save
 
-          elsif @client_profile.current_weight > 50 && @client_profile.body_type == 'Overweight'
-            @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
+            elsif @client_profile.current_weight > 50 && @client_profile.body_type == 'Overweight'
+              @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
                                             name: 'barbell straight leg deadlift',
                                             status: 'NOT STARTED',
                                             bodyPart: 'upper legs',
@@ -55,11 +55,11 @@ module Api
                                             endDate: @client_profile.created_at + n.day,
                                             reps: 15,
                                             sets: 4)
-            @workout_plan.user = current_user
-            @workout_plan.save
+              @workout_plan.user = current_user
+              @workout_plan.save
 
-          elsif @client_profile.current_weight > 50 && @client_profile.body_type == 'Obese'
-            @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
+            elsif @client_profile.current_weight > 50 && @client_profile.body_type == 'Obese'
+              @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
                                             name: 'run',
                                             status: 'NOT STARTED',
                                             bodyPart: 'cardio',
@@ -71,8 +71,8 @@ module Api
                                             endDate: @client_profile.created_at + n.day,
                                             reps: 15,
                                             sets: 5)
-            @workout_plan.user = current_user
-            @workout_plan.save
+              @workout_plan.user = current_user
+              @workout_plan.save
 
             else 
               @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
@@ -87,8 +87,8 @@ module Api
                                             endDate: @client_profile.created_at + n.day,
                                             reps: 15,
                                             sets: 4)
-             @workout_plan.user = current_user
-             @workout_plan.save
+              @workout_plan.user = current_user
+              @workout_plan.save
             end
 
             n -= 1
