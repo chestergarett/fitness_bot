@@ -5,6 +5,7 @@ module Api
         @workout_plan = WorkoutPlan.new(workout_plan_params)
         @workout_plan.user = current_user
         @workout_plan.status = 'NOT STARTED'
+        @workout_plan.startDate_js = Time.now.in_time_zone.beginning_of_day
 
         if @workout_plan.save
           render :create, status: :created
@@ -21,6 +22,7 @@ module Api
 
       def update
         @workout_plan = WorkoutPlan.find(params[:id])
+        @workout_plan.startDate_js = Time.now.in_time_zone.beginning_of_day
 
         if @workout_plan.update(workout_plan_params)
           render :update, status: :created

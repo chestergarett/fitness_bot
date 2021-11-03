@@ -27,7 +27,7 @@ module Api
             n -= 1
           end
 
-          #diet plan recommendations
+          # diet plan recommendations
           @diet_plan = DietPlan.new(title: 'The Ultimate Diet', description: 'recommended for you!', end_date: Time.now.in_time_zone, notes: 'Start taking steps in your fitness journey.')
           @diet_plan.user = current_user
 
