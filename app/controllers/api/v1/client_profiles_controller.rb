@@ -24,7 +24,6 @@ module Api
                                               reps: 12,
                                               sets: 3)
               @workout_plan.user = current_user
-              @workout_plan.save
 
             elsif @client_profile.current_weight > 50 && @client_profile.body_type == 'Normal weight'
               @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
@@ -40,7 +39,6 @@ module Api
                                               reps: 15,
                                               sets: 4)
               @workout_plan.user = current_user
-              @workout_plan.save
 
             elsif @client_profile.current_weight > 50 && @client_profile.body_type == 'Overweight'
               @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
@@ -56,7 +54,6 @@ module Api
                                             reps: 15,
                                             sets: 4)
               @workout_plan.user = current_user
-              @workout_plan.save
 
             elsif @client_profile.current_weight > 50 && @client_profile.body_type == 'Obese'
               @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
@@ -72,9 +69,8 @@ module Api
                                             reps: 15,
                                             sets: 5)
               @workout_plan.user = current_user
-              @workout_plan.save
 
-            else 
+            else
               @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
                                             name: 'barbell straight leg deadlift',
                                             status: 'NOT STARTED',
@@ -88,11 +84,13 @@ module Api
                                             reps: 15,
                                             sets: 4)
               @workout_plan.user = current_user
-              @workout_plan.save
+              
             end
+              @workout_plan.save
 
             n -= 1
           end
+            @workout_plan.save
 
           @diet_plan = DietPlan.new(title: 'The Ultimate Diet', description: 'recommended for you!', end_date: Time.now.in_time_zone, notes: 'Start taking steps in your fitness journey.')
           @diet_plan.user = current_user
