@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_02_084112) do
+ActiveRecord::Schema.define(version: 2021_11_03_114521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 2021_11_02_084112) do
     t.string "reps"
     t.string "sets"
     t.string "workout_type"
+    t.date "startDate_js"
     t.index ["user_id"], name: "index_workout_plans_on_user_id"
   end
 
