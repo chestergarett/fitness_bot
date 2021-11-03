@@ -10,22 +10,87 @@ module Api
           n = 14
 
           while n.positive?
-            @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
-                                            name: 'band close-grip push-up',
+            if @client_profile.current_weight < 50 && @client_profile.body_type == 'Underweight'
+              @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
+                                              name: 'pull-up',
+                                              status: 'NOT STARTED',
+                                              bodyPart: 'back',
+                                              equipment: 'body weight',
+                                              gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/0652.gif',
+                                              target: 'lats',
+                                              workout_id: 652,
+                                              startDate: @client_profile.created_at + n.day,
+                                              endDate: @client_profile.created_at + n.day,
+                                              reps: 12,
+                                              sets: 3)
+              @workout_plan.user = current_user
+
+            elsif @client_profile.current_weight > 50 && @client_profile.body_type == 'Normal weight'
+              @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
+                                              name: 'stationary bike walk',
+                                              status: 'NOT STARTED',
+                                              bodyPart: 'cardio',
+                                              equipment: 'leverage machine',
+                                              gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/0798.gif',
+                                              target: 'cardiovascular system',
+                                              workout_id: 798,
+                                              startDate: @client_profile.created_at + n.day,
+                                              endDate: @client_profile.created_at + n.day,
+                                              reps: 15,
+                                              sets: 4)
+              @workout_plan.user = current_user
+
+            elsif @client_profile.current_weight > 50 && @client_profile.body_type == 'Overweight'
+              @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
+                                            name: 'barbell straight leg deadlift',
                                             status: 'NOT STARTED',
-                                            bodyPart: 'upper arms',
-                                            equipment: 'band',
-                                            gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/0975.gif',
-                                            target: 'triceps',
-                                            workout_id: 975,
+                                            bodyPart: 'upper legs',
+                                            equipment: 'barbell',
+                                            gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/0116.gif',
+                                            target: 'hamstrings',
+                                            workout_id: 116,
                                             startDate: @client_profile.created_at + n.day,
                                             endDate: @client_profile.created_at + n.day,
-                                            reps: 10,
-                                            sets: 3)
-            @workout_plan.user = current_user
-            @workout_plan.save
+                                            reps: 15,
+                                            sets: 4)
+              @workout_plan.user = current_user
+
+            elsif @client_profile.current_weight > 50 && @client_profile.body_type == 'Obese'
+              @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
+                                            name: 'run',
+                                            status: 'NOT STARTED',
+                                            bodyPart: 'cardio',
+                                            equipment: 'body weight',
+                                            gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/0685.gif',
+                                            target: 'cardiovascular system',
+                                            workout_id: 685,
+                                            startDate: @client_profile.created_at + n.day,
+                                            endDate: @client_profile.created_at + n.day,
+                                            reps: 15,
+                                            sets: 5)
+              @workout_plan.user = current_user
+
+            else
+              @workout_plan = WorkoutPlan.new(workout_type: 'RECOMMENDED',
+                                            name: 'barbell straight leg deadlift',
+                                            status: 'NOT STARTED',
+                                            bodyPart: 'upper legs',
+                                            equipment: 'barbell',
+                                            gifUrl: 'http://d205bpvrqc9yn1.cloudfront.net/0116.gif',
+                                            target: 'hamstrings',
+                                            workout_id: 116,
+                                            startDate: @client_profile.created_at + n.day,
+                                            endDate: @client_profile.created_at + n.day,
+                                            reps: 15,
+                                            sets: 4)
+              @workout_plan.user = current_user
+              
+            end
+              @workout_plan.save
+
             n -= 1
           end
+            @workout_plan.save
 
           @diet_plan = DietPlan.new(title: 'The Ultimate Diet', description: 'recommended for you!', end_date: Time.now.in_time_zone, notes: 'Start taking steps in your fitness journey.')
           @diet_plan.user = current_user
