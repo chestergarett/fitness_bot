@@ -10,11 +10,11 @@ module Api
         workout_pie = WorkoutPlan.select('workout_plans.target, workout_plans.status, COUNT(*) as count').where(user: current_user).group(:target, :status)
         workout_status = WorkoutPlan.select(:startDate_js, :status, 'COUNT(*) as count').where(user: current_user).group(:startDate_js, :status)
 
-        render json: { weight: current_weight, 
-                       target_weight: target_weight, 
-                       calorie_intake: calorie_intake, 
-                       workout_count: workout_count, 
-                       workout_pie: workout_pie, 
+        render json: { weight: current_weight,
+                       target_weight: target_weight,
+                       calorie_intake: calorie_intake,
+                       workout_count: workout_count,
+                       workout_pie: workout_pie,
                        workout_status: workout_status }
       end
     end
