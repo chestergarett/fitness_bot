@@ -29,7 +29,7 @@ module Api
           end
 
           # diet plan recommendations
-          @diet_plan = DietPlan.new(title: 'The Ultimate Diet', description: 'recommended for you!', end_date: Time.now.in_time_zone, notes: 'Start taking steps in your fitness journey.')
+          @diet_plan = DietPlan.new(title: 'The Ultimate Diet', description: 'recommended for you!', end_date: @client_profile[:target_date], notes: 'Start taking steps in your fitness journey.')
           @diet_plan.user = current_user
           @diet_plan.save
           # @recommended_recipes = CalculateBmi.call(client_profile_params[:current_weight].to_f, client_profile_params[:height].to_f)

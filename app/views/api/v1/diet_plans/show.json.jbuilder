@@ -5,6 +5,7 @@ json.data do
     json.description @plan.description
     json.start_date @plan.created_at
     json.end_date @plan.end_date
+    json.notes @plan.notes
   end
 
   json.food_options do
