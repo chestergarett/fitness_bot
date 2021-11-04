@@ -12,9 +12,9 @@ json.data do
     json.body_type @client_profile.body_type
     json.target_date @client_profile.target_date
     json.food_preference @client_profile.food_preference
-    json.recommended_breakfast @recommended_breakfast
-    json.recommended_recipes @recommended_recipes
-    json.recommended_lunch @recommended_lunch
-    json.recommended_dinner @recommended_dinner
+    # json.recommended_breakfast @recommended_breakfast
+    # json.recommended_recipes @recommended_recipes
+    # json.recommended_lunch @recommended_lunch
+    # json.recommended_dinner @recommended_dinner
   end
 end
