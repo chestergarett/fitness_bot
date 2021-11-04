@@ -19,6 +19,7 @@ module Api
                                             target: 'triceps',
                                             workout_id: 975,
                                             startDate: @client_profile.created_at + n.day,
+                                            startDate_js: @client_profile.created_at + n.day,
                                             endDate: @client_profile.created_at + n.day,
                                             reps: 10,
                                             sets: 3)
