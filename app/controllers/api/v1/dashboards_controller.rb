@@ -7,7 +7,7 @@ module Api
         diet_plan = DietPlan.where(user: current_user)
         calorie_intake = Food.where(diet_plan: diet_plan, status: 'COMPLETED').sum(:calories)
         workout_count = WorkoutPlan.where(user: current_user, status: 'COMPLETED').count
-        workout_pie = WorkoutPlan.select('workout_plans.target, workout_plans.status, COUNT(*) as count').where(user: current_user).group(:target, :status)
+        workout_pie = WorkoutPlan.select('workout_plans.status, COUNT(*) as count').where(user: current_user).group(:status)
         workout_status = WorkoutPlan.select(:startDate_js, :status, 'COUNT(*) as count').where(user: current_user).group(:startDate_js, :status)
 
         render json: { weight: current_weight,
