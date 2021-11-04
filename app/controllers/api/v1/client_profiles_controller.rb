@@ -31,6 +31,8 @@ module Api
           @diet_plan.user = current_user
           @diet_plan.save
 
+          @recommended_recipes = CalculateBmi.call(client_profile_params[:current_weight], client_profile_params[:height])
+
           render :create
         else
           head(:unprocessable_entity)
@@ -50,7 +52,8 @@ module Api
       def index
         @client_profile = ClientProfile.where(user: current_user)
 
-        render json: { data: @client_profile }, status: :ok
+        # render json: { data: @client_profile }, status: :ok
+        render :index
       end
 
       private
